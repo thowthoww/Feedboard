@@ -34,12 +34,12 @@ export class HeroesComponent implements OnInit
             .then(hero => {
                 this.heroes.push(hero);
                 this.selectedHero = null;
-            })
+            });
     }
 
     public onDelete(hero: Hero): void
     {
-        this.heroService.delete(hero.id)
+        this.heroService.delete(hero._id)
             .then(() => {
                 this.heroes = this.heroes.filter(h => h !== hero);
                 if(this.selectedHero===hero)
@@ -56,7 +56,7 @@ export class HeroesComponent implements OnInit
 
     public gotoDetail(): void
     {
-        this.router.navigate(['/detail', this.selectedHero.id]);
+        this.router.navigate(['/hero', this.selectedHero._id]);
     }
 
     private initHeroes(): void

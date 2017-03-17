@@ -5,8 +5,8 @@
   <button (click)="onAdd(heroName.value); heroName.value=''">Add</button>
 
 <ul class="heroes">
-  <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
-    <span class="badge">{{hero.id}}</span>
+  <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+    <span class="badge">{{i+1}}</span>
     <span>{{hero.name}}</span>
     <button class="delete" (click)="onDelete(hero); $event.stopPropagation()">x</button>
   </li>

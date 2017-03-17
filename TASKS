@@ -1,0 +1,32 @@
+SYSTEM
+	new sprint
+	log prev sprint
+
+
+STAND UP SYSTEM
+	set default time. push back start 10mn
+	browser notification 5mn before start + notif at start
+		play a song at start. let people vote for tomorrow's song
+
+
+BOARD SYSTEM
+	categories (studio, projects)
+	create (title, desc)
+	+1 (-1?)
+
+
+VOTE SYSTEM
+	1 vote / week?
+
+
+STORY SYSTEM
+	1 chat room / story. no private messages
+	label owner
+	3 votes: 1.Do you understand the story and its point?
+		=> (If Yes) 2.Does it make the project better or worse? 3.Do you think our time could be used to much better use?
+	allow story owner to warn (browser notif) members to vote (or vote again if Q1 score is too low)
+	doc,mockup,.. links
+
+
+LAX
+	news ref
