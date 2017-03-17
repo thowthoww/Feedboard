@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+
+import { APP_CONFIG, IAppConfig } from './app-config';
 
 @Component(
 {
@@ -10,5 +12,10 @@ import { Component } from '@angular/core';
 
 export class AppComponent
 {
-    title = 'Sprintbox';
+    private title: string;
+
+    constructor(@Inject(APP_CONFIG) config: IAppConfig)
+    {
+        this.title = config.title;
+    }
 }

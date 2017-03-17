@@ -1,34 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
+var dbJson = require('../db.json');
 var mongojs = require('mongojs');
 
 // TODO: put login & pwd in hidden file
-var db = mongojs('mongodb://thowthoww:C4p*u8%25k%25YJj@ds129720.mlab.com:29720/heroku_4w5mkt7l', ['heroes']);
+var db = mongojs(dbJson['connecString'], ['heroes']);
 
 // GET All Heroes
 router.get('/heroes', function(req, res)
 {
-	db.heroes.find(function(err, heroes)
-	{
-		if(err)
-		{
-			res.send(err);
-		}
-		else
-		{
-			res.json(heroes);
-		}
-	});
-});
+	var name = req.query.name;
+	if(name==null) name = "";
 
-// TODO: merge with '/heroes'
-router.get('/hero/', function(req, res)
-{
 	db.heroes.find({
-		name: { $regex: req.query.name, $options: 'i' }
-	},
-	function(err, heroes)
+		name: { $regex: name, $options: 'i' }
+	}, function(err, heroes)
 	{
 		if(err)
 		{
@@ -63,6 +50,7 @@ router.get('/hero/:id', function(req, res, next)
 router.post('/hero', function(req, res)
 {
 	var hero = req.body;
+
 	if(!hero.name)
 	{
 		res.status(400);
@@ -72,7 +60,7 @@ router.post('/hero', function(req, res)
 	}
 	else
 	{
-		db.heroes.save(hero, function(err, hero)
+		db.heroes.save(hero, function(err, result)
 		{
 			if(err)
 			{
@@ -80,8 +68,7 @@ router.post('/hero', function(req, res)
 			}
 			else
 			{
-				console.log(hero);
-				res.json(hero);
+				res.json(result);
 			}
 		})
 	}
@@ -92,6 +79,7 @@ router.put('/hero/:id', function(req, res)
 {
 	var hero = req.body;
 	var updObj = {};
+
 	if(hero.name)
 	{
 		updObj.name = hero.name;

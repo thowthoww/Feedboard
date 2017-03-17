@@ -1,17 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Headers, Http } from '@angular/http'
 import 'rxjs/add/operator/toPromise';
 
+import { APP_CONFIG, IAppConfig } from '../app-config';
 import { Hero } from './hero';
 
 @Injectable()
 export class HeroService
 {
-    private heroesUrl = 'api/v1'; // URL to web API
-    private headers = new Headers({'Content-Type': 'application/json'});
+    private heroesUrl: string;
+    private headers: Headers;
 
-    public constructor(private http: Http)
+    public constructor(@Inject(APP_CONFIG) private config: IAppConfig, 
+        private http: Http)
     {
+        this.heroesUrl = config.apiEndpoint;
+        this.headers = config.servicesHeaders;
     }
 
     public create(name: string): Promise<Hero>
