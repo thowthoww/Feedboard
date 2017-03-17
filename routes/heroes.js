@@ -4,10 +4,9 @@ var router = express.Router();
 var dbJson = require('../db.json');
 var mongojs = require('mongojs');
 
-// TODO: put login & pwd in hidden file
 var db = mongojs(dbJson['connecString'], ['heroes']);
 
-// GET All Heroes
+// GET Heroes
 router.get('/heroes', function(req, res)
 {
 	var name = req.query.name;
