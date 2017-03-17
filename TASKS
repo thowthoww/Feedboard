@@ -22,11 +22,14 @@ VOTE SYSTEM
 STORY SYSTEM
 	1 chat room / story. no private messages
 	label owner
-	3 votes: 1.Do you understand the story and its point?
-		=> (If Yes) 2.Does it make the project better or worse? 3.Do you think our time could be used to much better use?
+	3 votes: 1.Do you understand the story and its goal?
+		=> (If Yes) 2.Does it make the project better or worse? 3.Do you think our time could be used to better use?
 	allow story owner to warn (browser notif) members to vote (or vote again if Q1 score is too low)
 	doc,mockup,.. links
 
 
 LAX
 	news ref
+
+
+FEEDBACK

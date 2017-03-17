@@ -10,13 +10,12 @@ import { Hero } from '.';
 export class HeroSearchService
 {
     private heroesUrl: string;
-    private headers: Headers;
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     public constructor(@Inject(APP_CONFIG) private config: IAppConfig, 
         private http: Http)
     {
         this.heroesUrl = config.apiEndpoint;
-        this.headers = config.servicesHeaders;
     }
 
     public search(term: string): Observable<Hero[]>

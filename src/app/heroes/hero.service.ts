@@ -9,13 +9,12 @@ import { Hero } from './hero';
 export class HeroService
 {
     private heroesUrl: string;
-    private headers: Headers;
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     public constructor(@Inject(APP_CONFIG) private config: IAppConfig, 
         private http: Http)
     {
         this.heroesUrl = config.apiEndpoint;
-        this.headers = config.servicesHeaders;
     }
 
     public create(name: string): Promise<Hero>
